@@ -1,0 +1,39 @@
+<div>
+    <h2>Work Order List</h2>
+  <label for="searchInput">Search by Description:</label>
+  <input type="text" id="searchInput" [(ngModel)]="searchTerm" placeholder="Enter description">
+  
+  <button (click)="confirmFilter()">Confirm Filter</button>
+  <button (click)="resetFilter()">Reset Filter</button>
+  
+    <table>
+      <thead>
+        <tr>
+          <th>WO ID</th>
+          <th>Description</th>
+          <th>Received Date</th>
+          <th>Assigned To</th>
+          <th>Status</th>
+          <th>Priority</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let workOrder of filteredWorkOrders">
+          <td>{{ workOrder.work_order_id }}</td>
+          <td>{{ workOrder.description }}</td>
+          <td>{{ workOrder.received_date }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let assignee of workOrder.assigned_to">
+                {{ assignee.person_name }} ({{ assignee.status }})
+              </li>
+            </ul>
+          </td>
+          <td>{{ workOrder.status }}</td>
+          <td>{{ workOrder.priority }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  
